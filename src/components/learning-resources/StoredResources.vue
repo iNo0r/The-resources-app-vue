@@ -19,6 +19,8 @@ export default {
   },
 inject: ["storedResources"],
 
+
+
 };
 </script>
 
