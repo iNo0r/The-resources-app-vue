@@ -42,20 +42,28 @@ export default {
       ],
     };
   },
-  provide(){
-      return {
-          storedResources : this.storedResources,
-          funAddNewResource : this.funAddNewResource
-      }
+  provide() {
+    return {
+      // this data is used in StoredResources.vue
+      storedResources: this.storedResources,
+      // this method is used in AddResources.vue
+      funAddNewResource: this.funAddNewResource,
+    };
   },
 
   methods: {
     setSelectedTab(value) {
       this.selectedTab = value;
     },
-    funAddNewResource(dataObject){
-      this.storedResources.push(dataObject)
-    }
+    funAddNewResource(title,description,link) {
+      const newResource = {
+        id: new Date().toISOString(),
+        title : title,
+        description:description,
+        link:link,
+      }
+      this.storedResources.push(newResource);
+    },
   },
   computed: {
     setModeStoredResources() {

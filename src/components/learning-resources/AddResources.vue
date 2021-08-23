@@ -1,25 +1,25 @@
 <template>
   <base-card>
-    <form @submit.prevent>
+    <form @submit.prevent="submitData">
       <div class="form-control">
         <label for="title">Title</label>
-        <input id="title" v-model="title" name="title" type="text" />
+        <input id="title" name="title" type="text" ref="titleInput" />
       </div>
       <div class="form-control">
         <label for="description">Description</label>
         <textarea
           name="description"
-          v-model="description"
           id="description"
           cols="3"
+          ref="descriptionInput"
         ></textarea>
       </div>
       <div class="form-control">
         <label for="link">Link</label>
-        <input id="link" v-model="link" name="link" type="url" />
+        <input id="link" name="link" type="url" ref="linkInput" />
       </div>
       <div>
-        <base-button type="submit" @click="AddResourcesBus">
+        <base-button type="submit">
           Add Resource
         </base-button>
       </div>
@@ -29,22 +29,13 @@
 
 <script>
 export default {
-  data() {
-    return {
-      title: "fsafsd",
-      description: "fasfdsaf",
-      link: "https://hello",
-    };
-  },
   inject: ["funAddNewResource"],
   methods: {
-    AddResourcesBus() {
-      this.funAddNewResource({
-        id:this.title + ' id',
-        title: this.title,
-        description: this.description,
-        link: this.link
-      });
+    submitData() {
+      const enteredTitle = this.$refs.titleInput.value;
+      const enteredDescription = this.$refs.descriptionInput.value;
+      const enteredLink = this.$refs.linkInput.value;
+      this.funAddNewResource(enteredTitle, enteredDescription, enteredLink);
     },
   },
 };
