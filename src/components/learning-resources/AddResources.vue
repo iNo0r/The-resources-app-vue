@@ -1,20 +1,25 @@
 <template>
   <base-card>
-    <form>
+    <form @submit.prevent>
       <div class="form-control">
         <label for="title">Title</label>
-        <input id="title" name="title" type="text" />
+        <input id="title" v-model="title" name="title" type="text" />
       </div>
       <div class="form-control">
         <label for="description">Description</label>
-        <textarea name="description" id="description" cols="3"></textarea>
+        <textarea
+          name="description"
+          v-model="description"
+          id="description"
+          cols="3"
+        ></textarea>
       </div>
       <div class="form-control">
         <label for="link">Link</label>
-        <input  id="link" name="link" type="url" />
+        <input id="link" v-model="link" name="link" type="url" />
       </div>
-      <div> 
-        <base-button type="submit">
+      <div>
+        <base-button type="submit" @click="AddResourcesBus">
           Add Resource
         </base-button>
       </div>
@@ -24,6 +29,24 @@
 
 <script>
 export default {
+  data() {
+    return {
+      title: "fsafsd",
+      description: "fasfdsaf",
+      link: "https://hello",
+    };
+  },
+  inject: ["funAddNewResource"],
+  methods: {
+    AddResourcesBus() {
+      this.funAddNewResource({
+        id:this.title + ' id',
+        title: this.title,
+        description: this.description,
+        link: this.link
+      });
+    },
+  },
 };
 </script>
 
@@ -34,16 +57,18 @@ label {
   margin-bottom: 0.5rem;
 }
 
-input,textarea {
+input,
+textarea {
   display: block;
   width: 100%;
-  font:inherit;
-  padding: 0.15rem ;
+  font: inherit;
+  padding: 0.15rem;
   border: 1px solid #ccc;
 }
 
-input:focus,textarea:focus {
-  outline:none;
+input:focus,
+textarea:focus {
+  outline: none;
   border-color: #3a0061;
   background-color: #f7ebff;
 }
@@ -51,5 +76,4 @@ input:focus,textarea:focus {
 .form-control {
   margin: 1rem 0;
 }
-
 </style>

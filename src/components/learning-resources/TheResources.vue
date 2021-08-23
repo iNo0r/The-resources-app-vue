@@ -44,7 +44,8 @@ export default {
   },
   provide(){
       return {
-          storedResources : this.storedResources
+          storedResources : this.storedResources,
+          funAddNewResource : this.funAddNewResource
       }
   },
 
@@ -52,6 +53,9 @@ export default {
     setSelectedTab(value) {
       this.selectedTab = value;
     },
+    funAddNewResource(dataObject){
+      this.storedResources.push(dataObject)
+    }
   },
   computed: {
     setModeStoredResources() {
