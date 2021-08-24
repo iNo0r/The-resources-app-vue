@@ -1,18 +1,13 @@
 <template>
-  <button :class="mode" :type="type">
+  <button :class="mode">
     <slot></slot>
   </button>
 </template>
 
 <script>
 export default {
-    props:['type','mode'],
-    data(){
-        return {
-            // type:'flat'
-        }
-    }
-};
+  props: ['mode']
+}
 </script>
 
 <style scoped>
@@ -30,6 +25,7 @@ button:active {
   background-color: #270041;
   border-color: #270041;
 }
+
 .flat {
   background-color: transparent;
   color: #3a0061;
