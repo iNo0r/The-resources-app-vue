@@ -2,8 +2,9 @@
   <the-header title="RememberMe"></the-header>
   <the-resources></the-resources>
   <div>
-    hi
+    hi  dsfdsf
   </div>
+    
 </template>
 
 <script>
